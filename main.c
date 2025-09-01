@@ -13,13 +13,13 @@
  Change History:
   Rev   Description
   ----  -----------------------------------------
-  1.0   Initial release 16F1459ópÇÃrev2.9fÇäÓèÄÇ…çÏê¨
+  1.0   Initial release 16F1459ÔøΩpÔøΩÔøΩrev2.9fÔøΩÔøΩÔøΩÓèÄÔøΩ…çÏê¨
 
 ********************************************************************/
 
 /** INCLUDES *******************************************************/
-#include "./USB/usb.h"
-#include "./USB/usb_function_cdc.h"
+#include "USB/usb.h"
+#include "USB/usb_function_cdc.h"
 
 #include "HardwareProfile.h"
 
@@ -27,8 +27,10 @@
 
 // PIC 16F1459 fuse configuration:
 #if defined (USE_INTERNAL_OSC)  //Definition in the hardware profile
-    __CONFIG(FOSC_INTOSC & WDTE_OFF & PWRTE_ON & MCLRE_OFF & CP_OFF & BOREN_ON & CLKOUTEN_OFF & IESO_OFF & FCMEN_OFF);
-    __CONFIG(WRT_OFF & CPUDIV_NOCLKDIV & USBLSCLK_48MHz & PLLMULT_3x & PLLEN_ENABLED & STVREN_ON &  BORV_LO & LPBOR_OFF & LVP_ON);
+    // __CONFIG(FOSC_INTOSC & WDTE_OFF & PWRTE_ON & MCLRE_OFF & CP_OFF & BOREN_ON & CLKOUTEN_OFF & IESO_OFF & FCMEN_OFF);
+    #pragma config FOSC = INTOSC, WDTE = OFF, PWRTE = ON, MCLRE = ON, CP = OFF, BOREN = ON, CLKOUTEN = OFF, IESO = OFF, FCMEN = OFF
+    // __CONFIG(WRT_OFF & CPUDIV_NOCLKDIV & USBLSCLK_48MHz & PLLMULT_3x & PLLEN_ENABLED & STVREN_ON &  BORV_LO & LPBOR_OFF & LVP_ON);
+    #pragma config WRT = OFF, CPUDIV = NOCLKDIV, USBLSCLK = 48MHz, PLLMULT = 3x, PLLEN = ENABLED, STVREN = ON, BORV = LO, LPBOR = OFF, LVP = ON
 #else
     __CONFIG(FOSC_HS & WDTE_OFF & PWRTE_ON & MCLRE_OFF & CP_OFF & BOREN_ON & CLKOUTEN_OFF & IESO_OFF & FCMEN_OFF);
     __CONFIG(WRT_OFF & CPUDIV_NOCLKDIV & USBLSCLK_48MHz & PLLMULT_4x & PLLEN_ENABLED & STVREN_ON &  BORV_LO & LPBOR_OFF & LVP_ON);
@@ -76,7 +78,7 @@ void putcUSART(char c);
 unsigned char getcUSART ();
 
 //These are your actual interrupt handling routines.
-void interrupt ISRCode()
+void __interrupt() ISRCode()
 {
         //Check which interrupt flag caused the interrupt.
         //Service the interrupt

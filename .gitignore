@@ -33,5 +33,6 @@
 MPLAB.X/debug/**
 MPLAB.X/dist/**
 MPLAB.X/build/**
+build/
 
 !PIC16F1454_USB2Serial.hex

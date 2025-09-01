@@ -31,7 +31,7 @@
 
  Change History:
   Rev   Date         Description
-  1.0   2013/05/30   2.3   09/15/2008 ‚ğŠî€‚Éì¬
+  1.0   2013/05/30   2.3   09/15/2008 ï¿½ï¿½ï¿½î€ï¿½Éì¬
 
 ********************************************************************/
 
@@ -194,5 +194,5 @@
     #define mInitRTSPin() {TRISCbits.TRISC1 = 0;}   //Configure RTS as a digital output.
     #define mInitCTSPin() {TRISCbits.TRISC2 = 1;}   //Configure CTS as a digital input.  (Make sure pin is digital if ANxx functions is present on the pin)
 
-    #define SPBRG   SPBRGL
+    // #define SPBRG   SPBRGL
 #endif  //HARDWARE_PROFILE_LOW_PIN_COUNT_USB_DEVELOPMENT_KIT_H

@@ -115,6 +115,9 @@
     #define COMPILER_MPLAB_C32
 	#include <p32xxxx.h>
 	#include <plib.h>
+#elif defined(__XC8__)
+	// #error xc8 is defined
+	#include <xc.h>
 #else
 	#error Unknown processor or compiler.  See Compiler.h
 #endif
@@ -183,6 +186,10 @@
         #define Sleep()					asm("SLEEP");
         #endif
 	#endif
+
+#elif defined(__XC8__)
+	#define ROM
+	#define FAR 
     
 // Definitions that apply to all 16-bit and 32-bit products
 // (PIC24F, PIC24H, dsPIC30F, dsPIC33F, and PIC32)
